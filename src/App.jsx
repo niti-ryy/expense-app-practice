@@ -3,7 +3,7 @@ import AddCategory from "./addCategory";
 import { useEffect, useState } from "react";
 import ListingCategory from "./listingCategory";
 import { AddExpense } from "./addExpense";
-import { ExpenseList } from "./expenseTableItem";
+import { ExpenseList } from "./expenseList";
 
 function App() {
   const [categories, setCategories] = useState([])
@@ -23,7 +23,7 @@ function App() {
       // If there's an error parsing, reset localStorage
       localStorage.setItem("categories", JSON.stringify([]))
     }
-  }, [])
+  }, [expenses])
 
 
   //adding category
@@ -45,6 +45,7 @@ const removeCategory=(id)=>{
   try{
     if(confirm){
       const result=categories.filter(ele=> ele.id !==id)
+      localStorage.setItem("categories", JSON.stringify(result))
       setCategories(result) //state change
     }
   //api call to be done here
@@ -58,6 +59,7 @@ const updateCategory=(data)=>{
   const result= categories.map((ele)=>{
     return ele.id===data.id ? {...ele,...data} :{...ele}
   })
+  localStorage.setItem("categories", JSON.stringify(result))
   setCategories(result)
 }
 
