@@ -2,6 +2,7 @@
 import AddCategory from "./addCategory";
 import { useEffect, useState } from "react";
 import ListingCategory from "./listingCategory";
+import { AddExpense } from "./addExpense";
 
 function App() {
   const [categories, setCategories] = useState([])
@@ -45,12 +46,18 @@ const removeCategory=(id)=>{
       setCategories(result) //state change
     }
   //api call to be done here
-  
   }catch(e){
     console.log(e.message)
   }
 }
 
+//update Category
+const updateCategory=(data)=>{
+  const result= categories.map((ele)=>{
+    return ele.id===data.id ? {...ele,...data} :{...ele}
+  })
+  setCategories(result)
+}
 
   return (
     <>
@@ -61,9 +68,9 @@ const removeCategory=(id)=>{
           <div>
             <p>No categories found add your first category</p>
           </div>
-        ) : <ListingCategory categories={categories} removeCategory={removeCategory}/>
+        ) : <ListingCategory categories={categories} removeCategory={removeCategory} updateCategory={updateCategory}/>
       }
-      
+      <AddExpense categories={categories}/>
       
     </>
   )

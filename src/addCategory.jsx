@@ -4,8 +4,8 @@ import PropTypes from "prop-types"
 export default function AddCategory({addCategory}) {
   const [Category, setCategory] = useState("");
   const [errors, setErrors] = useState({});
+  console.log(errors)
 
-  console.log(errors, "errors");
 
   const handleChange = (e) => {
     setCategory(e.target.value);
@@ -16,7 +16,7 @@ export default function AddCategory({addCategory}) {
     if (Category.length === 0) {
       error.category = "Category is required";
     }
-    //after backend add if the category is already present
+    //after backend add if the category is already present(api)
 
     return error;
   };
