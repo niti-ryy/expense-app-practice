@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import  { useState } from "react"
 import PropTypes from "prop-types"
 
-export const AddExpense=({categories})=>{
+export const AddExpense=({categories,addExpense})=>{
 
     const [formData,setFormData] =useState({
         title:"",
@@ -49,31 +49,9 @@ export const AddExpense=({categories})=>{
         if(result){
             setErros(result)
         }
-        console.log(formData)
+        addExpense(formData)
     }
-    // return(
-    //     <div>
-    //         <h1>Add Expense </h1>
-    //         <form onSubmit={handleSubmit}>
-    //             <input type="text" placeholder="title" id="title" name="title" value={formData.title} onChange={handleChange}/><br/>
-    //             {errors.title && <div><p><b>{errors.title}</b></p></div>}
-    //             <input type="number" placeholder="enter ammount" id="ammount" name="ammount" value={formData.ammount} onChange={handleChange}/><br/>
-    //             <select onChange={handleChange} name="category" value={formData.category}>
-    //                 <option value="select">select-category</option>
-    //                 {
-    //                     categories.map((ele,i)=>{
-    //                         return(
-    //                             <option key={i} value={ele.name}>{ele.name}</option>
-    //                         )
-    //                     })
-    //                 }
-    //             </select><br/>
-    //             <input type="date" name="date" value={formData.date} onChange={handleChange} /><br/>
-    //             <textarea  placeholder="enter notes" id="notes" name="notes" value={formData.notes} onChange={handleChange}/><br/>
-    //             <input type="submit"/>
-    //         </form>
-    //     </div>
-    // )
+   
     return (
         <div>
             <h1>Add Expense</h1>
@@ -143,5 +121,7 @@ export const AddExpense=({categories})=>{
 }
 
 AddExpense.propTypes={
-    categories:PropTypes.array.isRequired
+    categories:PropTypes.array.isRequired,
+    addExpense:PropTypes.func.isRequired
+    
 }

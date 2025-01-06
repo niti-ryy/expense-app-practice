@@ -6,6 +6,7 @@ import { AddExpense } from "./addExpense";
 
 function App() {
   const [categories, setCategories] = useState([])
+  const [expenses,setExpenses] =useState([])
 
   //initial category call to get all to be replaced by api
   useEffect(() => {
@@ -59,6 +60,13 @@ const updateCategory=(data)=>{
   setCategories(result)
 }
 
+// EXPENSES
+  const addExpense=(expenseData)=>{
+    console.log(expenseData)
+    // const result=[...expenses,...expenseData]
+    // setExpenses(result)
+  }
+
   return (
     <>
       <h1>Expense App</h1>
@@ -70,7 +78,7 @@ const updateCategory=(data)=>{
           </div>
         ) : <ListingCategory categories={categories} removeCategory={removeCategory} updateCategory={updateCategory}/>
       }
-      <AddExpense categories={categories}/>
+      <AddExpense categories={categories} addExpense={addExpense}/>
       
     </>
   )
