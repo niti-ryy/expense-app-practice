@@ -5,10 +5,11 @@ export const AddExpense=({categories,addExpense})=>{
 
     const [formData,setFormData] =useState({
         title:"",
-        ammount:undefined,
-        date:undefined,
+        ammount:"",
+        date:"",
         notes:"",
-        category:""
+        category:"",
+        id:Date.now()
     })
 
     const [errors,setErros]=useState({})
@@ -42,14 +43,29 @@ export const AddExpense=({categories,addExpense})=>{
         setFormData(result)
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const result=runValidations()
-        console.log(result)
-        if(result){
-            setErros(result)
-        }
+        
+        const result = runValidations()
+        
+        // if (Object.keys(result).length > 0) {
+        //     setErros(result)
+        //     return  // Stop execution if there are errors
+        // }
+        console.log(formData)
+        // Only proceed if no validation errors
         addExpense(formData)
+        // Reset form after successful submission
+        setFormData({
+            title: "",
+            ammount: "", 
+            date: "",
+            notes: "",
+            category: "",
+            id: Date.now()
+        })
+        // Clear any existing errors
+        setErros({})
     }
    
     return (
@@ -71,11 +87,11 @@ export const AddExpense=({categories,addExpense})=>{
                     <input 
                         type="number" 
                         placeholder="Enter amount" 
-                        name="amount" 
-                        value={formData.amount} 
+                        name="ammount" 
+                        value={formData.ammount} 
                         onChange={handleChange}
                     />
-                    {errors.amount && <span style={{ color: 'red' }}>{errors.amount}</span>}
+                    {errors.ammount && <span style={{ color: 'red' }}>{errors.ammount}</span>}
                 </div>
     
                 <div>
