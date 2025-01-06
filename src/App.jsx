@@ -3,6 +3,7 @@ import AddCategory from "./addCategory";
 import { useEffect, useState } from "react";
 import ListingCategory from "./listingCategory";
 import { AddExpense } from "./addExpense";
+import { ExpenseList } from "./expenseTableItem";
 
 function App() {
   const [categories, setCategories] = useState([])
@@ -62,9 +63,10 @@ const updateCategory=(data)=>{
 
 // EXPENSES
   const addExpense=(expenseData)=>{
+    //api call to be done for saving
     console.log(expenseData)
-    // const result=[...expenses,...expenseData]
-    // setExpenses(result)
+    const result=[...expenses,expenseData]
+    setExpenses(result)
   }
 
   return (
@@ -79,7 +81,7 @@ const updateCategory=(data)=>{
         ) : <ListingCategory categories={categories} removeCategory={removeCategory} updateCategory={updateCategory}/>
       }
       <AddExpense categories={categories} addExpense={addExpense}/>
-      
+      <ExpenseList expenses={expenses}/>
     </>
   )
 }
