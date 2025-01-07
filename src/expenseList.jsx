@@ -28,8 +28,8 @@ export const ExpenseList=({expenses})=>{
             <select value={filterState} onChange={handleChange} name="sortBy">
                 <option value=""><b>filterby</b></option>
                 {
-                    keys.map((ele)=>{
-                        return (<option value={ele}>{ele}</option>)
+                    keys.map((ele,i)=>{
+                        return (<option value={ele} key={i}>{ele}</option>)
                     })
                 }
             </select>

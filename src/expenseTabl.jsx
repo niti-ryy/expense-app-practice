@@ -1,4 +1,5 @@
 import { ExpenseTableItem } from "./expenseTableItems"
+import PropTypes from "prop-types"
 
 
 
@@ -29,4 +30,9 @@ export const ExpenseTable=({tempExpenseData,keys})=>{
            
         </div>
     )
+}
+
+ExpenseTable.propTypes={
+    tempExpenseData:PropTypes.array,
+    keys:PropTypes.array
 }
