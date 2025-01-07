@@ -8,7 +8,7 @@ export const ExpenseTable=({tempExpenseData,keys})=>{
     console.log(tempExpenseData)
     return(
         <div>
-            <table>
+            <table border={"2px"}>
                 <thead>
                     <tr>
                     {
