@@ -1,5 +1,9 @@
 export const ExpenseTableItem = (props) => {
-    console.log(props)
+    const{deleteExpense}=props
+    console.log(props,"expensetableitem")
+    const handleClick=()=>{
+        deleteExpense(props.id)
+    }
     return (
         <tr>
             {/* Map through the keys to display values */}
@@ -8,7 +12,7 @@ export const ExpenseTableItem = (props) => {
             ))}
             <td>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={handleClick}>Delete</button>
             </td>
         </tr>
     )

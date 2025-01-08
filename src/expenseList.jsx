@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { ExpenseTable } from "./expenseTabl"
 
-export const ExpenseList=({expenses})=>{
+export const ExpenseList=({expenses,deleteExpense})=>{
     console.log(expenses)
     const [tempExpenseData,setTempExpenseData]=useState(expenses || [])
     // const [filterState,setFilterState]=useState("")
@@ -34,7 +34,7 @@ export const ExpenseList=({expenses})=>{
                 }
             </select> */}
             {tempExpenseData.length > 0 ? (
-                <ExpenseTable tempExpenseData={tempExpenseData} keys={keys}/>
+                <ExpenseTable tempExpenseData={tempExpenseData} keys={keys} deleteExpense={deleteExpense}/>
             ) : (
                 <p>No expenses to display</p>
             )}

@@ -71,6 +71,15 @@ const updateCategory=(data)=>{
     setExpenses(result)
   }
 
+  const deleteExpense=(id)=>{
+    const confirm=window.confirm("are you sure")
+    console.log(id)
+    if(confirm){
+      const result=expenses.filter(ele=>id!==ele.id)
+      setExpenses(result)
+    }
+  }
+
   return (
     <>
       <h1>Expense App</h1>
@@ -83,7 +92,7 @@ const updateCategory=(data)=>{
         ) : <ListingCategory categories={categories} removeCategory={removeCategory} updateCategory={updateCategory}/>
       }
       <AddExpense categories={categories} addExpense={addExpense}/>
-      <ExpenseList expenses={expenses}/>
+      <ExpenseList expenses={expenses} deleteExpense={deleteExpense}/>
     </>
   )
 }

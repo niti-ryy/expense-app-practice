@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 
 
-export const ExpenseTable=({tempExpenseData,keys})=>{
+export const ExpenseTable=({tempExpenseData,keys,deleteExpense})=>{
     console.log(tempExpenseData,keys)
     
     console.log(tempExpenseData)
@@ -22,7 +22,7 @@ export const ExpenseTable=({tempExpenseData,keys})=>{
                 <tbody>
                     {
                         tempExpenseData.map((ele,i)=>{
-                            return (<ExpenseTableItem {...ele} key={i}/>)
+                            return (<ExpenseTableItem {...ele} key={i} deleteExpense={deleteExpense}/>)
                         })
                     }
                 </tbody>
