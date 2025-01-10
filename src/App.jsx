@@ -2,7 +2,7 @@
 import AddCategory from "./addCategory";
 import { useEffect, useState } from "react";
 import ListingCategory from "./listingCategory";
-import { AddExpense } from "./addExpense";
+import { AddExpense } from "./expenseForm";
 import { ExpenseList } from "./expenseList";
 
 function App() {
@@ -79,6 +79,18 @@ const updateCategory=(data)=>{
       setExpenses(result)
     }
   }
+
+  const editExpense=(editedData)=>{
+    const result=expenses.map((ele)=>{
+      if(editedData.id==ele.id){
+        return {...ele,editedData}
+      }else{
+        return {...ele}
+      }
+    })
+    setExpenses(result)
+  }
+  
 
   return (
     <>
