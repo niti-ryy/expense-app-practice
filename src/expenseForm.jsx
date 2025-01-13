@@ -1,5 +1,7 @@
 import  { useState } from "react"
 import PropTypes from "prop-types"
+import { AddExpenseCushion } from "./addExpense"
+import { editExpense } from "./editExpense"
 
 export const AddExpense=({categories,addExpense})=>{
 
@@ -70,7 +72,7 @@ export const AddExpense=({categories,addExpense})=>{
    
     return (
         <div>
-            <h1>Add Expense</h1>
+            <AddExpenseCushion/>
             <form onSubmit={handleSubmit}>
                 <div>
                     <input 
