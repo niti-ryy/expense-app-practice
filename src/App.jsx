@@ -2,7 +2,7 @@
 import AddCategory from "./addCategory";
 import { useEffect, useState } from "react";
 import ListingCategory from "./listingCategory";
-import { AddExpense } from "./expenseForm";
+import { ExpenseForm } from "./expenseForm";
 import { ExpenseList } from "./expenseList";
 
 function App() {
@@ -90,7 +90,7 @@ const updateCategory=(data)=>{
     })
     setExpenses(result)
   }
-  
+   
 
   return (
     <>
@@ -103,7 +103,7 @@ const updateCategory=(data)=>{
           </div>
         ) : <ListingCategory categories={categories} removeCategory={removeCategory} updateCategory={updateCategory}/>
       }
-      <AddExpense categories={categories} addExpense={addExpense}/>
+      <ExpenseForm categories={categories} addExpense={addExpense}/>
       <ExpenseList expenses={expenses} deleteExpense={deleteExpense}/>
     </>
   )
