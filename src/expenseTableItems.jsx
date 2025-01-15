@@ -1,66 +1,62 @@
-// import { useState } from "react"
+// Import necessary dependencies
+import { useState } from "react"                // Importing useState hook from React
+import PropTypes from "prop-types"              // Importing PropTypes for type checking
 
-// export const ExpenseTableItem = (props) => {
-//     const{deleteExpense}=props
-//     console.log(props,"expensetableitem")
-//     const handleClick=()=>{
-//         deleteExpense(props.id)
-//     }
+// Component definition
+export const ExpenseTableItem = (props) => {    // Component that takes props as parameter
+    // Destructuring props
+    const { deleteExpense, id, ...rest } = props    
+    // - deleteExpense: function extracted from props
+    // - id: id extracted from props
+    // - ...rest: all other remaining props stored in 'rest' object
 
-//     const [toogle,setToggle]=useState(false)
-//     const handleEditInfo=(info)=>{
-//         console.log(info)
-//     }
+    // State declaration
+    const [isEditing, setIsEditing] = useState(false)  
+    // - Creates a boolean state variable 'isEditing'
+    // - setIsEditing is the function to update this state
+    // - Initially set to false
 
-//     return (
-//         <tr>
-//             {/* Map through the keys to display values */}
-//             {Object.keys(props).filter(key => key !== 'id' && key !== 'notes').map(key => (
-//                 <td key={key}>{props[key]}</td>
-//             ))
-//             }
-//             <td>
-//                 <button onClick={()=>{handleEditInfo(...props)}}>Edit</button>
-//                 <button onClick={handleClick}>Delete</button>
-//             </td>
-//         </tr>
-//     )
-// }
-
-import { useState } from "react"
-import PropTypes from "prop-types" // Added PropTypes
-
-export const ExpenseTableItem = (props) => {
-    const { deleteExpense, id, ...rest } = props // Destructure what we need
-    const [isEditing, setIsEditing] = useState(false) // Renamed for clarity
-
-    const handleDelete = () => {
-        deleteExpense(id)
+    // Handler functions
+    const handleDelete = () => {                // Delete handler function
+        deleteExpense(id)                       // Calls deleteExpense function with id
     }
 
-    const handleEdit = () => {
-        setIsEditing(!isEditing)
-        console.log(rest) // Log the data without function props
+    const handleEdit = () => {                  // Edit handler function
+        setIsEditing(!isEditing)               // Toggles isEditing state
+        console.log(rest)                      // Logs the remaining props
     }
 
+    // Component render
     return (
-        <tr>
-            {Object.entries(rest)
-                .filter(([key]) => key !== 'notes')
-                .map(([key, value]) => (
-                    <td key={key}>{value}</td>
+        <tr>                                    
+            {Object.entries(rest)               // Convert rest object to array of [key, value] pairs
+                .filter(([key]) => key !== 'notes')  // Filter out the 'notes' key
+                .map(([key, value]) => (             // Map through remaining entries
+                    <td key={key}>{value}</td>       // Create table cell for each value
                 ))
             }
-            <td style={{ display: 'flex', gap: '8px' }}>
+            <td style={{ display: 'flex', gap: '8px' }}>  
                 <button 
-                    onClick={handleEdit}
-                    style={{ padding: '4px 8px', background: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px' }}
+                    onClick={handleEdit}              // Attach edit handler
+                    style={{                          // Button styling
+                        padding: '4px 8px', 
+                        background: '#4CAF50',        // Green background
+                        color: 'white', 
+                        border: 'none', 
+                        borderRadius: '4px' 
+                    }}
                 >
                     Edit
                 </button>
                 <button 
-                    onClick={handleDelete}
-                    style={{ padding: '4px 8px', background: '#f44336', color: 'white', border: 'none', borderRadius: '4px' }}
+                    onClick={handleDelete}            // Attach delete handler
+                    style={{                          // Button styling
+                        padding: '4px 8px', 
+                        background: '#f44336',        // Red background
+                        color: 'white', 
+                        border: 'none', 
+                        borderRadius: '4px' 
+                    }}
                 >
                     Delete
                 </button>
@@ -69,7 +65,11 @@ export const ExpenseTableItem = (props) => {
     )
 }
 
+// PropTypes definition for type checking
 ExpenseTableItem.propTypes = {
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    deleteExpense: PropTypes.func.isRequired
+    id: PropTypes.oneOfType([                  // id can be either string or number
+        PropTypes.string, 
+        PropTypes.number
+    ]).isRequired,                             // id is required
+    deleteExpense: PropTypes.func.isRequired   // deleteExpense must be a function and is required
 }
